@@ -1,0 +1,4 @@
+data/*.jsonl
+data/*.csv
+data/*.duckdb
+__pycache__/
