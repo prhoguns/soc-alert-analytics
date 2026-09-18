@@ -216,6 +216,12 @@ def main() -> None:
         n_bg = background(out)
         planted = scenarios(out)
     n_tri = triage(alerts_path, planted, Path("data/triage.csv"))
+    # Ground truth for evaluating detection methods (the ml/ module uses this; the SQL never does).
+    json.dump(
+        {"planted_alert_ids": [a["id"] for a in planted],
+         "incidents": {"ssh_brute_force_vpn01": "2026-08-10T03", "lateral_movement_ws017_dc01": "2026-08-17T14", "web_scan_sqli_web01": "2026-08-24T22"}},
+        Path("data/planted.json").open("w"),
+    )
     print(f"alerts: {n_bg + len(planted):,} ({len(planted)} planted)  triage rows: {n_tri:,}")
 
 
