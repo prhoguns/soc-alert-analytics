@@ -15,6 +15,7 @@ Built to answer the questions a SOC lead asks at a monthly review.
 | Input | Wazuh `alerts.json` (one JSON object per line) + a CSV of analyst actions |
 | Engine | DuckDB, reading JSON and CSV directly; no server |
 | Queries | 12, in [`sql/`](sql/), each a self-contained question |
+| ML | [`ml/`](ml/): Isolation Forest over per-host-hour behaviour, evaluated against planted incidents |
 | Generator | [`scripts/generate.py`](scripts/generate.py) produces 30 days of realistic alerts with business-hours volume, weekly patching storms, noisy rules, and three planted attack chains |
 
 ### Why synthetic data
@@ -43,6 +44,38 @@ docker run --rm -v "$PWD":/app soc-analytics 07 09    # just the ones you want
 ```
 
 Or without Docker: `pip install -r requirements.txt` and run the same `python scripts/...` commands.
+
+## Anomaly detection (ml/)
+
+Rules find what you already know to look for. `ml/` asks the other question: which host-hours are
+*unusual for that host*, with no labels and no signatures?
+
+- **Features** ([`ml/features.py`](ml/features.py)): one row per (host, hour) — alert count, distinct rules,
+  users, source IPs, external IPs, per-tactic counts, max/avg severity — expressed as **per-host robust
+  z-scores, positive part only** (a host doing *more* than its own median, in MAD units), with the weekly
+  Tuesday patch window baselined separately so FIM storms are "normal for a patch window".
+- **Model** ([`ml/train.py`](ml/train.py)): Isolation Forest, 300 trees, unsupervised. Compared against a
+  transparent excess-sum heuristic and a raw-volume baseline, then combined (best rank of forest and heuristic).
+- **Evaluation**: the generator records which alerts it planted, so precision/recall at top-k and the rank
+  of each planted incident are measured, not asserted.
+
+Result ([`ml/results.md`](ml/results.md)): 13,675 host-hours, 10 malicious.
+
+| incident | Isolation Forest | excess heuristic | raw volume | **combined** |
+|---|---:|---:|---:|---:|
+| SSH brute force, vpn-01 | 193 | 1 | 2 | **2** |
+| Lateral movement, ws-017 → dc-01 | **46** | 2,173 | 5,596 | **65** |
+| Web scan + SQLi, web-01 | 63 | 4 | 1 | **7** |
+
+The volume methods nail the loud attacks and completely miss the quiet one (two alerts, two tactics,
+level 12). The forest finds the quiet one in the top 0.4% and under-ranks the loud ones. Combined, all
+three incidents are in the top 65 — about two host-hours a day to review. What I learned building it,
+in order: raw counts made the forest flag *quiet* hours on busy hosts; per-host normalisation fixed that
+but the patch storms then dominated; modelling the maintenance window fixed that. Each step is a commit.
+
+![anomaly scores](charts/ml_anomaly_scores.png)
+
+Run: `docker run --rm -v "$PWD":/app --entrypoint python soc-analytics ml/train.py`
 
 ## The questions
 
