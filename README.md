@@ -104,3 +104,7 @@ sql/       one question per file
 results/   generated: question, query, result table
 charts/    generated PNGs
 ```
+
+## Acknowledgments
+
+AI tools assisted with documentation and repository organization.
