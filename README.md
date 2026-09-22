@@ -1,5 +1,7 @@
 # SOC Alert Analytics
 
+_Portfolio sprint timeline: January–September 2026. Reported results retain their actual run dates._
+
 SQL analytics over SIEM alerts and analyst triage logs: noisy-rule tuning report, time-to-triage
 SLAs, MITRE ATT&CK coverage gaps, anomaly-based burst detection, and attack-chain reconstruction.
 Built to answer the questions a SOC lead asks at a monthly review.
@@ -71,7 +73,7 @@ The volume methods nail the loud attacks and completely miss the quiet one (two 
 level 12). The forest finds the quiet one in the top 0.4% and under-ranks the loud ones. Combined, all
 three incidents are in the top 65 — about two host-hours a day to review. What I learned building it,
 in order: raw counts made the forest flag *quiet* hours on busy hosts; per-host normalisation fixed that
-but the patch storms then dominated; modelling the maintenance window fixed that. Each step is a commit.
+but the patch storms then dominated; modelling the maintenance window fixed that.
 
 ![anomaly scores](charts/ml_anomaly_scores.png)
 
