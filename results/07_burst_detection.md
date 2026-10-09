@@ -39,11 +39,11 @@ limit 15;
 | 2026-08-11 03:00 | 5710 | sshd: Attempt to login using a non-existent user | app-02 | 11 | 1.8 | 7.5 |
 | 2026-08-25 02:00 | 80710 | Auditd: SELinux denied access | app-02 | 9 | 1.6 | 7.2 |
 | 2026-08-04 02:00 | 5716 | sshd: authentication failed | app-02 | 15 | 2.5 | 6.9 |
-| 2026-08-18 03:00 | 60122 | Windows logon failure | ws-035 | 6 | 1.3 | 6.9 |
-| 2026-08-18 02:00 | 5716 | sshd: authentication failed | db-01 | 14 | 2.3 | 6.9 |
 | 2026-08-11 02:00 | 80710 | Auditd: SELinux denied access | app-01 | 8 | 1.6 | 6.9 |
-| 2026-08-11 02:00 | 5716 | sshd: authentication failed | web-01 | 14 | 2.4 | 6.6 |
-| 2026-08-18 02:00 | 60122 | Windows logon failure | ws-020 | 5 | 1.2 | 6.6 |
+| 2026-08-18 02:00 | 5716 | sshd: authentication failed | db-01 | 14 | 2.3 | 6.9 |
+| 2026-08-18 03:00 | 60122 | Windows logon failure | ws-035 | 6 | 1.3 | 6.9 |
 | 2026-08-04 08:00 | 60122 | Windows logon failure | ws-021 | 5 | 1.3 | 6.6 |
+| 2026-08-18 02:00 | 60122 | Windows logon failure | ws-020 | 5 | 1.2 | 6.6 |
+| 2026-08-11 02:00 | 5716 | sshd: authentication failed | web-01 | 14 | 2.4 | 6.6 |
 
 _15 rows._

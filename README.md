@@ -65,13 +65,13 @@ Result ([`ml/results.md`](ml/results.md)): 13,675 host-hours, 10 malicious.
 
 | incident | Isolation Forest | excess heuristic | raw volume | **combined** |
 |---|---:|---:|---:|---:|
-| SSH brute force, vpn-01 | 193 | 1 | 2 | **2** |
-| Lateral movement, ws-017 → dc-01 | **46** | 2,173 | 5,596 | **65** |
-| Web scan + SQLi, web-01 | 63 | 4 | 1 | **7** |
+| SSH brute force, vpn-01 | 123 | 1 | 2 | **2** |
+| Lateral movement, ws-017 → dc-01 | **47** | 2,177 | 3,606 | **66** |
+| Web scan + SQLi, web-01 | 57 | 4 | 1 | **7** |
 
 The volume methods nail the loud attacks and completely miss the quiet one (two alerts, two tactics,
 level 12). The forest finds the quiet one in the top 0.4% and under-ranks the loud ones. Combined, all
-three incidents are in the top 65 — about two host-hours a day to review. What I learned building it,
+three incidents are in the top 66 — about two host-hours a day to review. What I learned building it,
 in order: raw counts made the forest flag *quiet* hours on busy hosts; per-host normalisation fixed that
 but the patch storms then dominated; modelling the maintenance window fixed that.
 

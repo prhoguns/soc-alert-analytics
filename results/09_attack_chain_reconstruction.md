@@ -36,15 +36,15 @@ limit 10;
 
 | first_host | src_user | window_start | window_end | tactics_in_window | hosts_in_window | tactics_seen |
 |:---|:---|:---|:---|---:|---:|:---|
-| ws-017 | user23 | 2026-08-17 14:22 | 2026-08-17 16:22 | 5 | 2 | Command and Control | Persistence | Privilege Escalation | Execution | Credential Access |
-| ws-017 | user23 | 2026-08-17 14:28 | 2026-08-17 16:22 | 4 | 2 | Command and Control | Credential Access | Persistence | Privilege Escalation |
-| web-01 | user34 | 2026-08-04 02:28 | 2026-08-04 03:45 | 3 | 3 | Credential Access | Persistence | Initial Access |
-| ws-024 | user48 | 2026-08-07 08:24 | 2026-08-07 10:14 | 3 | 3 | Credential Access | Command and Control | Persistence |
+| ws-017 | user23 | 2026-08-17 14:22 | 2026-08-17 16:22 | 5 | 2 | Persistence | Credential Access | Privilege Escalation | Execution | Command and Control |
+| ws-017 | user23 | 2026-08-17 14:28 | 2026-08-17 16:22 | 4 | 2 | Persistence | Command and Control | Credential Access | Privilege Escalation |
+| web-01 | user34 | 2026-08-04 02:28 | 2026-08-04 03:45 | 3 | 3 | Initial Access | Persistence | Credential Access |
+| ws-024 | user48 | 2026-08-07 08:24 | 2026-08-07 10:14 | 3 | 3 | Command and Control | Persistence | Credential Access |
 | ws-028 | user54 | 2026-08-18 01:04 | 2026-08-18 02:41 | 3 | 3 | Persistence | Command and Control | Credential Access |
-| web-01 | user58 | 2026-08-03 14:04 | 2026-08-03 15:58 | 3 | 2 | Credential Access | Initial Access | Persistence |
-| jump-01 | user33 | 2026-08-04 03:08 | 2026-08-04 05:03 | 3 | 2 | Command and Control | Credential Access | Persistence |
-| ws-034 | user01 | 2026-08-05 06:53 | 2026-08-05 08:34 | 3 | 2 | Command and Control | Execution | Persistence |
-| ws-034 | user01 | 2026-08-05 06:54 | 2026-08-05 08:34 | 3 | 2 | Execution | Command and Control | Persistence |
-| web-01 | user56 | 2026-08-06 01:18 | 2026-08-06 02:41 | 3 | 2 | Persistence | Initial Access | Credential Access |
+| web-01 | user58 | 2026-08-03 14:04 | 2026-08-03 15:58 | 3 | 2 | Credential Access | Persistence | Initial Access |
+| jump-01 | user33 | 2026-08-04 03:08 | 2026-08-04 05:03 | 3 | 2 | Persistence | Credential Access | Command and Control |
+| ws-034 | user01 | 2026-08-05 06:53 | 2026-08-05 08:34 | 3 | 2 | Execution | Command and Control | Persistence |
+| ws-034 | user01 | 2026-08-05 06:54 | 2026-08-05 08:34 | 3 | 2 | Execution | Persistence | Command and Control |
+| web-01 | user56 | 2026-08-06 01:18 | 2026-08-06 02:41 | 3 | 2 | Credential Access | Initial Access | Persistence |
 
 _10 rows._

@@ -18,14 +18,14 @@ stats as (
     group by 1
 )
 select
-    at.tactic,
+    t.tactic,
     coalesce(s.rules, 0) as rules,
     coalesce(s.alerts, 0) as alerts,
     coalesce(s.confirmed, 0) as confirmed_true_positives,
     case when s.rules is null then 'BLIND SPOT: no detection rule'
          when s.confirmed = 0 then 'no confirmed detections in 30 days'
          else 'covered' end as status
-from all_tactics at
+from all_tactics t
 left join stats s using (tactic)
 order by alerts desc;
 ```
@@ -41,8 +41,8 @@ order by alerts desc;
 | Execution | 1 | 93 | 29 | covered |
 | Privilege Escalation | 1 | 18 | 13 | covered |
 | Exfiltration | 0 | 0 | 0 | BLIND SPOT: no detection rule |
-| Lateral Movement | 0 | 0 | 0 | BLIND SPOT: no detection rule |
 | Collection | 0 | 0 | 0 | BLIND SPOT: no detection rule |
+| Lateral Movement | 0 | 0 | 0 | BLIND SPOT: no detection rule |
 | Defense Evasion | 0 | 0 | 0 | BLIND SPOT: no detection rule |
 
 _12 rows._
